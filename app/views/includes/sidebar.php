@@ -13,15 +13,15 @@
                   
                 </li>  
 
-                <li class=" @if(Route::is('country.*') )  active @endif has-sub">
+                <li class="  f has-sub">
                     <a class="js-arrow  " href="#">
-                        <i class="fas fa-flag"></i>Countries</a>
+                        <i class="fas fa-flag"></i>Employees</a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li class=" @if(Route::is('country.index') )  active @endif " >
-                            <a href="{{route('country.index')}}"> All Countries</a>
+                        <li class="  active  " >
+                            <a href="/employee"> All Employee</a>
                         </li>
-                        <li class=" @if(Route::is('country.create') )  active @endif ">
-                            <a href="{{route('country.create')}}">Add Country</a>
+                        <li class="   active ">
+                            <a href="/employee/add">Add Employee</a>
                         </li>
                         <li>
                             <a href="index3.html">archive</a>

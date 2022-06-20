@@ -4,8 +4,14 @@ if(!defined('DS')) {
 }
  define('APP_PATH',realpath(dirname(__FILE__)));
 // echo  define('ROOT_DIR', __DIR__.'/');
+ realpath(dirname(__FILE__));
  define('APP_PUBLIC',dirname(__FILE__))    ;
+ define('APP_SCRIPT',"http://wwww.employee-app.test" )  ;
+ 
 define('VIEWS_PATH', APP_PATH . DS . 'views' . DS);
+
+define('TEMPLATE_PATH', APP_PATH . DS . 'views' . DS . 'includes' . DS);
+
 
 
 defined('DATABASE_HOST_NAME')       ? null : define ('DATABASE_HOST_NAME', 'localhost');

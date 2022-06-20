@@ -66,8 +66,32 @@ class AbstractController
 
         $view = VIEWS_PATH . $this->_controller . DS . $this->_action . '.view.php';
         if(file_exists($view)){
+            // print_r($this->_data);die;
+
+            // load($data);
+            require_once  TEMPLATE_PATH . DS ."header.php";
+            require_once  TEMPLATE_PATH . DS ."menu.php";
+            require_once  TEMPLATE_PATH . DS ."sidebar.php";
+              echo   '<div class="main-content">
+                <div class="section__content section__content--p30">
+                <div class="container-fluid">';
             extract($this->_data);
-            require_once $view;
+
+                require_once $view;
+
+                 
+             echo '
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                </div>';
+
+
+            require_once  TEMPLATE_PATH . DS ."footer.php";
+
         }else{
             require_once  VIEWS_PATH . 'notfound' . DS . 'noview.view.php';
 
