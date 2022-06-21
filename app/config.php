@@ -14,6 +14,9 @@ define('UPLODES_PATH', APP_PATH . DS . 'uplodes' . DS);
 define('TEMPLATE_PATH', APP_PATH . DS . 'views' . DS . 'includes' . DS);
 
 
+define('TEMPLATE_PATH', APP_PATH . DS . 'views' . DS . 'includes' . DS);
+
+
 
 defined('DATABASE_HOST_NAME')       ? null : define ('DATABASE_HOST_NAME', 'localhost');
 defined('DATABASE_USER_NAME')       ? null : define ('DATABASE_USER_NAME', 'root');

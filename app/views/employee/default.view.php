@@ -44,15 +44,22 @@
                                   <td>
                                     <div class="table-data-feature">
                                        
+<<<<<<< HEAD
                                     <a href="/document/default/<?php echo $emp->id?>" class="item" data-toggle="tooltip" data-empment="top" title="Document">
                                             <i class="zmdi zmdi-file"></i>
                                         </a>
+=======
+>>>>>>> a5c90005626b1971b598adad7d377253a55b962d
                                         <a href="/employee/edit/<?php echo $emp->id?>" class="item" data-toggle="tooltip" data-empment="top" title="Edit">
                                             <i class="zmdi zmdi-edit"></i>
                                         </a>
                                         <a
                                         onclick="return confirm('Are u Sure For Delete This Employee')"
+<<<<<<< HEAD
                                         href="employee/delete/<?php echo $emp->id?>" class="item" data-toggle="tooltip" data-empment="top" title="Delete">
+=======
+                                        href="employee/delete/<?php echo $emp->id?>" class="item" data-toggle="tooltip" data-empment="top" title="Edit">
+>>>>>>> a5c90005626b1971b598adad7d377253a55b962d
                                             <i class="zmdi zmdi-delete"></i>
                                         </a>
                                         <!-- <form action="" method="POST">
