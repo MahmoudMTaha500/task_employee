@@ -7,26 +7,30 @@
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
-                <li class=" @if(Route::is('home') )  active @endif has-sub">
-                    <a class="" href="{{route('home')}}">
-                        <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                  
-                </li>  
+                
 
-                <li class=" @if(Route::is('country.*') )  active @endif has-sub">
+                <li class=" <?php  if($_SERVER['REQUEST_URI']=='/employee') echo 'active'?>  has-sub">
                     <a class="js-arrow  " href="#">
-                        <i class="fas fa-flag"></i>Countries</a>
+                        <i class="fas fa-flag"></i>Employees</a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li class=" @if(Route::is('country.index') )  active @endif " >
-                            <a href="{{route('country.index')}}"> All Countries</a>
+                        <li class=" <?php  if($_SERVER['REQUEST_URI']=='/employee') echo 'active'?> " >
+                            <a href="/employee"> All Employee</a>
                         </li>
-                        <li class=" @if(Route::is('country.create') )  active @endif ">
-                            <a href="{{route('country.create')}}">Add Country</a>
+                        <li class="   <?php  if($_SERVER['REQUEST_URI']=='/employee/add') echo 'active'?>  ">
+                            <a href="/employee/add">Add Employee</a>
                         </li>
-                        <li>
-                            <a href="index3.html">archive</a>
+                    </ul>
+                </li>
+                <li class="   has-sub">
+                    <a class="js-arrow  " href="#">
+                        <i class="fas fa-file"></i>Documents</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li class=" <?php  if($_SERVER['REQUEST_URI']=='/document') echo 'active'?> " >
+                            <a href="/document"> All Documents</a>
                         </li>
-                        
+                        <li class="   <?php  if($_SERVER['REQUEST_URI']=='/document/add') echo 'active'?>  ">
+                            <a href="/document/add">Add Document</a>
+                        </li>
                     </ul>
                 </li>
 
