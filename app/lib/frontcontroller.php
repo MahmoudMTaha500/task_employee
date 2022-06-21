@@ -33,19 +33,10 @@ class FrontController
     public function dispatch()
     {
         $controllerClassName = 'PHPMVC\Controllers\\' . ucfirst($this->_controller) . 'Controller';
-        // var_dump( new $controllerClassName() );|| !method_exists($controllerClassName, $actionName)
-
         $actionName = $this->_action . 'Action';
-
         if(!class_exists($controllerClassName) ) {
-            // $controllerClassName = self::NOT_FOUND_CONTROLLER;
             $controllerClassName = self::NOT_FOUND_CONTROLLER;
-
-            // echo $controllerClassName;
-            // $this->_action = $actionName ;
         }
-
-
         $controller = new $controllerClassName();
         if(!method_exists($controller,$actionName)){
           $this->_action =   $actionName = self::NOT_FOUND_ACTION;
@@ -53,8 +44,6 @@ class FrontController
         $controller->setController($this->_controller);
         $controller->setAction($this->_action);
         $controller->setParams($this->_params);
-        // $controller->setTemplate($this->_template);
-        // $controller->setRegistry($this->_registry);
         $controller->$actionName();
 
     }

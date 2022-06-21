@@ -42,7 +42,14 @@ use PHPMVC\Models\EmployeeModel;
                                     echo  $emp->name?></td>
                                     <td><?php echo $doc->documentType ?></td>
                                     <td><?php echo $doc->documentNumber ?></td>
-                                    <td><?php echo $doc->file ?></td>
+                                    <td>
+                                    <!-- /var/www/taskemployee/app/views/uplodes/Lektion  3.2   B1.pdf -->
+                                        <a href="<?= '/uplode/show/' . $doc->id?>" target="_blank" >
+
+                                        <?php echo $doc->file ?>
+                                        </a>
+
+                                    </td>
                                 
 
                                     

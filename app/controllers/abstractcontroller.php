@@ -98,19 +98,7 @@ class AbstractController
         }
     }
 
-    //   echo  $view = VIEWS_PATH . $this->_controller . DS . $this->_action . '.view.php';
-        // if($this->_action == FrontController::NOT_FOUND_ACTION || !file_exists($view)) {
-        //     $view = VIEWS_PATH . 'notfound' . DS . 'notfound.view.php';
-        // }
-        // $this->_data = array_merge($this->_data, $this->language->getDictionary());
-        // $this->_template->setRegistry($this->_registry);
-        // $this->_template->setActionViewFile($view);
-        // $this->_template->setAppData($this->_data);
-        // $this->_template->renderApp();
     }
 
-    // protected function requestHasValidToken ()
-    // {
-    //     return $_REQUEST['token'] === $this->session->CSRFToken ? true : false;
-    // }
+   
 }

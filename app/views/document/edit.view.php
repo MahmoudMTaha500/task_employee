@@ -1,15 +1,11 @@
-
-<?php
-//  echo 12345;
-//  var_dump($this->_data['objEmp']);die;
- ?>
 <div class="row">
     <div class="col-lg-12">
     <div class="card">
-    <div class="card-header">Section Employees </div>
+    <div class="card-header">Section Documents </div>
+
     <div class="card-body">
     <div class="card-title">
-    <h3 class="text-center title-2">Edit Employee  <?= $objEmp->name ?></h3>
+    <h3 class="text-center title-2">Edit  Document </h3>
     </div>
     <hr>
     <?php 
@@ -23,49 +19,38 @@
             </div>
             <?php    }
                 unset($_SESSION['error_massege']);
-                
    ?>
   
-    <form action="/employee/update/<?php echo $objEmp->id?>" method="post" novalidate="novalidate">
+    <form action="/document/update/<?=$doc->id?>" method="post"  enctype="multipart/form-data">
       
        
        
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="" class="control-label mb-1"> Name:</label>
-              <input  name="name" type="text" required='required' class="form-control"  placeholder="type your place name" value="<?= $objEmp->name ?>">
+            <label for="cc-payment" class="control-label mb-1">Employees:</label>
+               <select class="custom-select" required name="employee_id" id="">
+                   <option selected>Select one</option>
+                   <?php
+                   foreach($employees as $emp){ ?>
+                   <option <?php if($emp->id == $doc->employee_id) echo 'selected' ?> value="<?= $emp->id?>"> <?= $emp->name?></option>
+
+                 <?php  }
+                   ?>
+               </select>
               </div>
           </div>
           <div class="col-6">
             <div class="form-group">
-              <label for="cc-payment" class="control-label mb-1">Birth Date:</label>
-              <input type="date" class="form-control" required name="birth_date" id="" value="<?= $objEmp->birthDate ?>">
-              </div> 
-
-          </div>
-       
-               </div>
-
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label for="cc-payment" class="control-label mb-1">Hiring Date:</label>
-              <input type="date" class="form-control" required name="hiring_date" id="" value="<?= $objEmp->hiringDate ?>">
-
-
-              </div> 
-
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="cc-payment" class="control-label mb-1">Gender:</label>
-               <select class="custom-select" required name="gender" id="">
+            <label for="cc-payment" class="control-label mb-1">Document Type:</label>
+               <select class="custom-select" required name="type" id="">
                    <option selected>Select one</option>
-                   <option  <?php if($objEmp->gender== 'Male')   echo 'selected'; ?> value="Male">Male</option>
-                   <option  <?php if($objEmp->gender== 'Female')   echo 'selected'; ?> value="Female">Female</option>
+                   <option <?php if($doc->documentType == "ID") echo 'selected' ?>  value="ID">ID</option>
+                   <option <?php if($doc->documentType == "Passport") echo 'selected' ?> value="Passport">Passport</option>
+                   <option <?php if($doc->documentType == "Iqama") echo 'selected' ?> value="Iqama">Iqama</option>
                </select>
               </div> 
+
           </div>
        
                </div>
@@ -73,25 +58,23 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <!-- <label for="cc-payment" class="control-label mb-1">Hiring Date:</label> -->
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" <?php if($objEmp->status== 0)   echo 'checked="checked"'; ?> value="0"> Active
-                </label>
-                <label class="btn btn-secondary">
-                <input type="radio" name="options" id="option2" autocomplete="off" <?php if($objEmp->status== 1)   echo 'checked="checked"'; ?>  value="1"> stopped
-                </label>
-                
-                </div>
+              <label for="cc-payment" class="control-label mb-1"> Document Number:</label>
+              <input type="number" class="form-control" required name="number" id="" value="<?=$doc->documentNumber?>" placeholder="type  Document Number">
 
 
               </div> 
 
           </div>
-        
-          
+          <div class="col-6">
+            <div class="form-group">
+              <label for="cc-payment" class="control-label mb-1">Attached File:</label>
+              <input type="file" class='form-control' name="file" id="">
+              </div> 
+          </div>
        
-               </div>
+         </div>
+
+      
 
             
         
@@ -99,7 +82,6 @@
            
 
 
-    <div>
     <button id="button" type="submit" class="btn btn-lg btn-info btn-block">
     Save
     </button>

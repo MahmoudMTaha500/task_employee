@@ -12,9 +12,15 @@ class DocumentController extends AbstractController
 {
     use InputFilter;
     use Helper;
+   
 
      public function defaultAction(){
+        if(isset($this->_params[0])){
+            $this->_data['documents'] =     DocumentModel::getBy(['employee_id'=>$this->_params[0]]);
+        }  else{
         $this->_data['documents']=  DocumentModel::getAll();
+                
+        }
         $this->_view();
      }
 
@@ -28,24 +34,27 @@ class DocumentController extends AbstractController
     }
     public function storeAction()
     {
-        
-        // print_r($_POST);
-        // print_r($_FILES);
-        // die;
+      
         if( $_POST['employee_id'] !== "" && $_POST['type']  !== "" && $_POST['number'] !== "" && $_FILES['file']['name'] !== "" ){
             $doc = new DocumentModel();
             $doc->employee_id = $this->filterInt($_POST['employee_id']);
             $doc->documentType = $this->filterString($_POST['type']);
             $doc->documentNumber = $this->filterString($_POST['number']);
             $doc->file = $this->filterString($_FILES['file']['name']);
-            file_put_contents(UPLODES_PATH,$_FILES['file']['full_path']);
+            $fileName = $_FILES['file']['name'];
+            $fileSize = $_FILES['file']['size'];
+            $fileTmpName  = $_FILES['file']['tmp_name'];
+            $fileType = $_FILES['file']['type'];
+            $fileExtension = strtolower(end(explode('.',$fileName)));
+            $uploadPath = UPLODES_PATH . basename($fileName);
+          
+            $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
             $doc->save();
             if($doc->save()){
                 $_SESSION['success_massege'] = 'Documnet Added Successfully ';
 
-                $this->redirect('/employee');
+                $this->redirect('/document');
             } else {
-                //  var_dump($emp);
 
             }
 
@@ -60,50 +69,48 @@ class DocumentController extends AbstractController
     public function editAction()
     {
         $id = $this->_params[0];
-        $emp = EmployeeModel::getByPK($id);
-        if($emp===false){
-            $this->redirect('/employee');
+        $doc = DocumentModel::getByPK($id);
+        if($doc===false){
+            $this->redirect('/document');
         }
-        $this->_data['objEmp'] = $emp;
-
-        // print_r($emp->name); 
-
+        $this->_data['doc'] = $doc;
+        $this->_data['employees']=  EmployeeModel::getAll();
          $this->_view();
- 
      }
 
      public function updateAction()
      {
-         
-        //  var_dump($_POST);
-        //  die;
+     
          $id = $this->_params[0];
 
-         $emp = EmployeeModel::getByPK($id);
-            // var_dump($emp);
-        //  die;
-         if($emp===false){
-            $this->redirect('/employee');
+         $doc = DocumentModel::getByPK($id);
+         if($doc===false){
+            $this->redirect('/document');
         }
-         if($_POST['name'] !== "" && $_POST['birth_date'] !== "" && $_POST['hiring_date']  !== "" && $_POST['gender'] !== "" ){
-            //  $emp = new EmployeeModel();
-             $emp->name = $this->filterString($_POST['name']);
-             $emp->birthDate = $this->filterString($_POST['birth_date']);
-             $emp->hiringDate = $this->filterString($_POST['hiring_date']);
-             $emp->gender = $this->filterString($_POST['gender']);
-             $emp->status = $this->filterString($_POST['status']);
-             $emp->save();
-             if($emp->save()){
-                $_SESSION['success_massege'] = 'Employee Updated Successfully ';
-                 $this->redirect('/employee');
+        if( $_POST['employee_id'] !== "" && $_POST['type']  !== "" && $_POST['number'] !== "" && $_FILES['file']['name'] !== "" ){
+
+            $doc->employee_id = $this->filterInt($_POST['employee_id']);
+            $doc->documentType = $this->filterString($_POST['type']);
+            $doc->documentNumber = $this->filterString($_POST['number']);
+            $doc->file = $this->filterString($_FILES['file']['name']);
+            $fileName = $_FILES['file']['name'];
+            $fileSize = $_FILES['file']['size'];
+            $fileTmpName  = $_FILES['file']['tmp_name'];
+            $fileType = $_FILES['file']['type'];
+            $fileExtension = strtolower(end(explode('.',$fileName)));
+            $uploadPath = UPLODES_PATH . basename($fileName);
+            $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+             $doc->save();
+             if($doc->save()){
+                $_SESSION['success_massege'] = 'Document Updated Successfully ';
+                 $this->redirect('/document');
              } else {
-                 //  var_dump($emp);
  
              }
  
          } else {
              $_SESSION['error_massege'] = 'Please Input All Data ';
-             return  $this->redirect('/employee/add');;
+             return  $this->redirect("/document/edit/$doc->id");
          }
       
  
@@ -114,18 +121,20 @@ class DocumentController extends AbstractController
      {
         $id = $this->_params[0];
 
-        $emp = EmployeeModel::getByPK($id);
-           // var_dump($emp);
-       //  die;
-            if($emp===false){
-            $this->redirect('/employee');
-            }
+         $doc = DocumentModel::getByPK($id);
 
-        if($emp->delete()){
-            $_SESSION['success_massege'] = 'Employee Deleted  Successfully ';
-            $this->redirect('/employee');
+            if($doc===false){
+            $this->redirect('/document');
+            }
+            $fullpath = UPLODES_PATH . $doc->file;
+            unlink($fullpath);
+        if($doc->delete()){
+
+            
+            $_SESSION['success_massege'] = 'Document Deleted  Successfully ';
+            $this->redirect('/document');
         } else {
-            //  var_dump($emp);
+        
 
         }
      }

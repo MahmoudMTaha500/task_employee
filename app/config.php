@@ -2,21 +2,17 @@
 if(!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
- define('APP_PATH',realpath(dirname(__FILE__)));
-// echo  define('ROOT_DIR', __DIR__.'/');
- realpath(dirname(__FILE__));
- define('APP_PUBLIC',dirname(__FILE__))    ;
- define('APP_SCRIPT',"http://wwww.employee-app.test" )  ;
- 
+define('APP_PATH',realpath(dirname(__FILE__)));
+realpath(dirname(__FILE__));
+define('APP_PUBLIC',dirname(__FILE__))    ;
+define('APP_SCRIPT',"http://wwww.employee-app.test" )  ;
+
 define('VIEWS_PATH', APP_PATH . DS . 'views' . DS);
-define('UPLODES_PATH', APP_PATH . DS . 'uplodes' . DS);
-
+define('UPLODES_PATH', APP_PATH . DS . 'views' . DS .'uplodes' . DS); 
+define('FULL_PATH', "file:///var/www/taskemployee/app/views/uplodes/"); 
 define('TEMPLATE_PATH', APP_PATH . DS . 'views' . DS . 'includes' . DS);
-
-
 define('TEMPLATE_PATH', APP_PATH . DS . 'views' . DS . 'includes' . DS);
-
-
+// Database Connecation
 
 defined('DATABASE_HOST_NAME')       ? null : define ('DATABASE_HOST_NAME', 'localhost');
 defined('DATABASE_USER_NAME')       ? null : define ('DATABASE_USER_NAME', 'root');
